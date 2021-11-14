@@ -1,0 +1,1 @@
+E:\Dev\emscripten\emsdk-main\upstream\emscripten\emcc wvmain.c wputils.c unpack.c float.c words.c bits.c metadata.c -o wavpack.js -s "EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']" -s EXPORTED_FUNCTIONS="['_malloc','_free']"

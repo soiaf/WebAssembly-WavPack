@@ -1,0 +1,36 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+//                            WavPack WebAssembly Decoder/Player                              //
+//                            Copyright (c)2021 Peter McQuillan                               //
+//                                  All Rights Reserved.                                      //
+//      Distributed under the BSD Software License (see wavpack_webassembly_license.txt)      //
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+This package contains the source code for a WebAssembly decoder (and very simple player) for
+WavPack files. This version is built on top of the WavPack Tiny Decoder, so it is designed to
+work with version 4 files - so it will not decode DSD WavPack files for example.
+
+The main WebAssebly code is written in C and emscripten is used to generate the WebAssembly
+output. Javascript is used to communicate with the WebAssembly code.
+
+To compile the C code, you can look at the included mybuild.bat file, though obviously this 
+would need to be modified to point at the location on your local machine to emcc
+This will generate 2 files, wavpack.js and wavpack.wasm
+
+mywavpack.htm is the main HTML file, this is the one you should load to try out the decoder.
+Note this is extremely basic!
+This HTML file calls mywavpack.js which is the main JavaScript code, this calls the 
+WebAssembly code. 
+This HTML file has to be called via a web server, due to security issues it will not work by
+simply opening the file with your web browser.
+
+mywavpack uses a simple 'hack' in order to allow the WebAssembly code to read the contents of
+the WavPack file you choose to play, it makes a copy of the file which is in the correct 
+security context that the WebAssembly file can read from.
+The buffer it uses to retrieve the decoded PCM data is shared with the WebAssembly code - I
+use a malloc in the code to reserve a small amount of memory - I don't use a corresponding 
+'free' as this reserved memory gets re-used if you load/play subsequent WavPack files.
+
+My code is built on top of the WavPack tiny decoder, however this could probably be modified 
+to use the full WavPack source code if you wanted to!
+
+Please direct any questions or comments to beatofthedrum@gmail.com
