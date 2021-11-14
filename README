@@ -9,11 +9,12 @@ This package contains the source code for a WebAssembly decoder (and very simple
 WavPack files. This version is built on top of the WavPack Tiny Decoder, so it is designed to
 work with version 4 files - so it will not decode DSD WavPack files for example.
 
-The main WebAssebly code is written in C and emscripten is used to generate the WebAssembly
+The main WebAssembly code is written in C and emscripten is used to generate the WebAssembly
 output. Javascript is used to communicate with the WebAssembly code.
 
 To compile the C code, you can look at the included mybuild.bat file, though obviously this 
-would need to be modified to point at the location on your local machine to emcc
+would need to be modified to point at the location on your local machine to emcc (Emscripten
+compiler).
 This will generate 2 files, wavpack.js and wavpack.wasm
 
 mywavpack.htm is the main HTML file, this is the one you should load to try out the decoder.
