@@ -6,8 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 This package contains the source code for a WebAssembly decoder (and very simple player) for
-WavPack files. This version is built on top of the WavPack Tiny Decoder, so it is designed to
-work with version 4 files - so it will not decode DSD WavPack files for example.
+WavPack files. This version is built on top of the WavPack Tiny Decoder, so it will not decode
+(very old) version 3 files. This will also not decode DSD WavPack files.
 
 The main WebAssembly code is written in C and emscripten is used to generate the WebAssembly
 output. Javascript is used to communicate with the WebAssembly code.
@@ -22,7 +22,10 @@ Note this is extremely basic!
 This HTML file calls mywavpack.js which is the main JavaScript code, this calls the 
 WebAssembly code. 
 This HTML file has to be called via a web server, due to security issues it will not work by
-simply opening the file with your web browser.
+simply opening the file with your web browser - however you can call it from any webserver 
+including one on your own machine - for development purposes I used one from python, called 
+(in the directory where I have all these files) with:
+python -m http.server
 
 mywavpack uses a simple 'hack' in order to allow the WebAssembly code to read the contents of
 the WavPack file you choose to play, it makes a copy of the file which is in the correct 
