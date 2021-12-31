@@ -23,6 +23,7 @@ let floatDivisor = 1.0;
 const butOpenFile = document.getElementById("fileloader");
 const butStop = document.getElementById("stopplay");
 const textArea = document.getElementById("mytextarea");
+const playbackvolume = document.getElementById("volume");
 
 
 var arrayPointer;
@@ -84,11 +85,12 @@ butOpenFile.addEventListener('click', async () => {
 
   ctx = new AudioContext();
   gain = ctx.createGain();
-  gain.gain.value = 0.01;
+  gain.gain.value = playbackvolume.value;
   gain.connect( ctx.destination );
 
   periodicFetch();
 
+  oninput = handleVolumeEvents;
 
 });
 
@@ -97,9 +99,15 @@ butStop.addEventListener('click', async () => {
   if(!end_of_song_reached)
   {
     stopped = true;
-    if( active_node ) { active_node.stop(0); }
   }
+  if( active_node ) { active_node.stop(0); }
+
 });
+
+function handleVolumeEvents( evt ) {
+  const value = evt.target.value;
+  gain.gain.value = +value;
+}
 
 function periodicFetch() {
 
