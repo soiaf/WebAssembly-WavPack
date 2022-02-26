@@ -4547,6 +4547,9 @@ var _GetNumChannels = Module["_GetNumChannels"] = createExportWrapper("GetNumCha
 var _GetBytesPerSample = Module["_GetBytesPerSample"] = createExportWrapper("GetBytesPerSample");
 
 /** @type {function(...*):?} */
+var _GetNumSamples = Module["_GetNumSamples"] = createExportWrapper("GetNumSamples");
+
+/** @type {function(...*):?} */
 var _DecodeWavPackBlock = Module["_DecodeWavPackBlock"] = createExportWrapper("DecodeWavPackBlock");
 
 /** @type {function(...*):?} */

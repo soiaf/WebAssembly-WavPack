@@ -66,6 +66,11 @@ int EMSCRIPTEN_KEEPALIVE GetBytesPerSample()
     return(WavpackGetBytesPerSample(wpc));
 }
 
+uint32_t EMSCRIPTEN_KEEPALIVE GetNumSamples()
+{
+    return(WavpackGetNumSamples(wpc));
+}
+
 int EMSCRIPTEN_KEEPALIVE DecodeWavPackBlock(int num_channels, int bps, int *output)
 {
     uint32_t samples_unpacked;

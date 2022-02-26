@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //                            WavPack WebAssembly Decoder/Player                              //
-//                            Copyright (c)2021 Peter McQuillan                               //
+//                          Copyright (c)2021-2022 Peter McQuillan                            //
 //                                  All Rights Reserved.                                      //
 //      Distributed under the BSD Software License (see wavpack_webassembly_license.txt)      //
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,17 +17,28 @@ would need to be modified to point at the location on your local machine to emcc
 compiler).
 This will generate 2 files, wavpack.js and wavpack.wasm
 
-mywavpack.htm is the main HTML file, this is the one you should load to try out the decoder.
-Note this is extremely basic!
+There are 2 versions of HTML/JavaScript for interfacing with the WebAssembly code that you
+can try:
+
+A version where we're filling a buffer and using Web Audio to play the buffer.
+For this version mywavpack.htm is the HTML file, this will let you try out the decoder.
 This HTML file calls mywavpack.js which is the main JavaScript code, this calls the 
-WebAssembly code. 
-This HTML file has to be called via a web server, due to security issues it will not work by
+WebAssembly code. This version of the code may give small audio glitches when playing 
+back some WavPack files.
+
+A version using AudioWorklets
+For this version the HTML to load is index.htm
+This HTML file calls mywavpack_worklet.js which in turn calls messenger-processor.js
+This version is a more modern approach to Web Audio and should give more consistent results on 
+supported browsers.
+ 
+The HTML files have to be called via a web server, due to security issues it will not work by
 simply opening the file with your web browser - however you can call it from any webserver 
 including one on your own machine - for development purposes I used one from python, called 
 (in the directory where I have all these files) with:
 python -m http.server
 
-mywavpack uses a simple 'hack' in order to allow the WebAssembly code to read the contents of
+I use a simple 'hack' in order to allow the WebAssembly code to read the contents of
 the WavPack file you choose to play, it makes a copy of the file which is in the correct 
 security context that the WebAssembly file can read from.
 The buffer it uses to retrieve the decoded PCM data is shared with the WebAssembly code - I
