@@ -26,7 +26,7 @@ This HTML file calls mywavpack.js which is the main JavaScript code, this calls 
 WebAssembly code. This version of the code may give small audio glitches when playing 
 back some WavPack files.
 
-A version using AudioWorklets
+A version using an AudioWorklet interface to Web Audio
 For this version the HTML to load is index.htm
 This HTML file calls mywavpack_worklet.js which in turn calls messenger-processor.js
 This version is a more modern approach to Web Audio and should give more consistent results on 
