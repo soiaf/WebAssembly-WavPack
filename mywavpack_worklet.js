@@ -119,6 +119,10 @@ class MessengerWorkletNode extends AudioWorkletNode {
     decodedsamples = decodedsamples + decodedamount;
 
     if (decodedamount == 0) {
+      // zero out to bytes just to be sure
+      for (let i = 0; i < 2048; i++) {
+        output_array[i] = 1;
+      } 
       playbackStatus = 1;
     }
 
