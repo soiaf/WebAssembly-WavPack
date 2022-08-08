@@ -2,7 +2,9 @@
 <head><title>WavPack WebAssembly Player</title>
 </head>
 <body>
-<button type="button" id="fileloader">Load WavPack File</button>
+    <input type="file" id="fileElem"  accept=".wv" style="display:none">
+<button id="fileSelect">Load WavPack File</button>
+
 <button type="button" id="stopplay">Stop Playback</button>
 <div>
     <label>Volume:<input type="range" id="volume" name="volume" min="0.1" max="2" step="0.1" value="1"></label>

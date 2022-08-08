@@ -17,7 +17,7 @@ would need to be modified to point at the location on your local machine to emcc
 compiler).
 This will generate 2 files, wavpack.js and wavpack.wasm
 
-There are 2 versions of HTML/JavaScript for interfacing with the WebAssembly code that you
+There are 3 versions of HTML/JavaScript for interfacing with the WebAssembly code that you
 can try:
 
 A version where we're filling a buffer and using Web Audio to play the buffer.
@@ -31,6 +31,13 @@ For this version the HTML to load is index.htm
 This HTML file calls mywavpack_worklet.js which in turn calls messenger-processor.js
 This version is a more modern approach to Web Audio and should give more consistent results on 
 supported browsers.
+
+There is also a very simple/basic benchmark interface. This is accessed via timer.htm
+With this version, there is no playback of the actual music, you simply select the file you wish
+to test, wait a bit and it will show you how many seconds (milliseconds) it took to decode the 
+file. This can be interesting if you want to see the speed differences between different browsers
+or you want to see the speed difference between running a decoder 'natively' and decoding via
+a web browser.
  
 The HTML files have to be called via a web server, due to security issues it will not work by
 simply opening the file with your web browser - however you can call it from any webserver 
